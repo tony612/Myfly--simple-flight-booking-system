@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.6)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.2)
     arel (3.0.2)
     bbenezech-nested_form (0.0.6)
     bcrypt-ruby (3.0.1)
@@ -49,9 +50,18 @@ GEM
       warden (~> 1.2.1)
     erubis (2.7.0)
     eventmachine (0.12.10)
+    excon (0.16.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
     haml (3.1.7)
+    heroku (2.30.5)
+      heroku-api (~> 0.3.4)
+      launchy (>= 0.3.2)
+      netrc (~> 0.7.7)
+      rest-client (~> 1.6.1)
+      rubyzip
+    heroku-api (0.3.4)
+      excon (~> 0.16.1)
     hike (1.2.1)
     hpricot (0.8.6)
     i18n (0.6.0)
@@ -67,12 +77,15 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.3.6)
+    netrc (0.7.7)
     orm_adapter (0.4.0)
     pg (0.14.0)
     polyglot (0.3.3)
@@ -118,6 +131,9 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     remotipart (1.0.2)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (0.9.9)
     sass (3.2.1)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
@@ -152,6 +168,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   haml
+  heroku
   jquery-rails
   kaminari
   pg
