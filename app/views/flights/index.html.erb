@@ -1,0 +1,47 @@
+<h1>Listing flights</h1>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Airline</th>
+    <th>FlightNo</th>
+    <th>PlaneType</th>
+    <th>LeaveTime</th>
+    <th>LeaveCity</th>
+    <th>ArriveTime</th>
+    <th>ArriveCity</th>
+    <th>Price</th>
+    <th>Class</th>
+    <th>Remark</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% if @flights %>
+<% @flights.each do |flight| %>
+  <tr>
+    <td><%= flight.airline %></td>
+    <td><%= flight.flight_no %></td>
+    <td><%= flight.plane_type %></td>
+    <td><%= flight.leave_time %></td>
+    <td><%= flight.leave_city %></td>
+    <td><%= flight.arrive_time %></td>
+    <td><%= flight.arrive_city %></td>
+    <td><%= flight.price %></td> 
+    <td><%= flight.cabin_class %></td> 
+    <td><%= flight.remark %></td>
+    <td><%= link_to (new_order_path :flight_id => flight) do %>
+      <button class="btn btn-primary">
+        Select
+      </button>
+        <% end %>
+    </td>
+  </tr>
+<% end %>
+<% end %>
+</table>
+
+<br />
+
+<% if @flights %>
+  <p><%= paginate @flights, :outer_window => 3, :left => 3, :right => 3 %></p>
+<% end %>

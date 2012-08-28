@@ -1,0 +1,21 @@
+%h1 New deliver_pay
+
+%table.table.table-hover
+  %thead
+    %tr
+      %th Flighting Info
+  %tbody
+    %tr
+      %td= @flight.airline
+      %td= @flight.plane_type
+      %td= [@flight.leave_time.to_s(:db), "Leave", @flight.leave_city].join(" ")
+      %td= @flight.price
+    -@order.passengers.each do |p|
+      %tr
+        %td= p.name
+        %td= p.cred_type
+        %td= p.cred_number
+
+= render 'form'
+
+= link_to 'Back', deliver_pays_path

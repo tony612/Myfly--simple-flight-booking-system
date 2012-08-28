@@ -1,0 +1,46 @@
+= form_for @flight, :method => :get, :url => flights_path do |f|
+  .triptype
+    %input.index_select#tripTypeOne{:type => "radio", :name => "tripType", :value=> "O", :checked => "checked"}
+    %label.indextext_select{:for => "tripTypeOne"} One-Way
+    %input.index_select#tripTypeRound{:type => "radio", :name => "tripType", :value => "R"}
+    %label.indextexy_select{:for => "tripTypeRound"} Round-trip
+  .trippath
+    %ul
+      %li
+        - con = (params[:error] and params[:error][:city] )
+        .control-group{:class => "#{con ? 'error' : '' }" }
+          = f.label :leave_city, "Depart From", :class => "indextext control-label"
+          = f.text_field :leave_city
+          %span.help-inline #{con ? params[:error][:city] : ''}
+      %li
+        - con = (params[:error] and params[:error][:city])
+        .control-group{:class => "#{con ? 'error' : '' }" }
+          = f.label :arrive_city, "Arrive In", :class => "indextext control-label"
+          = f.text_field :arrive_city
+          %span.help-inline #{con ? params[:error][:city] : ''}
+  .tripdate
+    %ul
+      %li
+        - con = params[:error] and params[:error][:leave_time]
+        .control-group{:class => "#{con ? 'error' : '' }" }
+          = f.label :leave_time, "Depart Date", :class => "indextext control-label"
+          = f.text_field :leave_time, :class => "auto-kal", :placeholder => "dd/mm/yyyy"
+          %span.help-inline #{con ? params[:error][:leave_time] : ''}
+      %li
+        %span.indextext{:for => "end-date"} Return Date
+        %p
+          %input#end-date.auto-kal{:type => "text", :name => "return_time", :placeholder => "dd/mm/yyyy"}
+  .tripcabin
+    %ul
+      %li
+        %span.indextext_select cabin class : 
+      %li
+        %p.addvOptions
+          %input.index_select#classServiceE{:type => "radio", :checked => true, :value => "eco", :name => "cabin_class"}
+          %label.indextext_select{:for => "classServiceE"} Coach
+      %li
+        %p.addvOptions
+          %input.index_select#classServiceP{:type => "radio", :value => "vip", :name => "cabin_class"}
+          %label.indextext_select{:for=>"classServiceP"} Business & First
+
+  = f.submit :class => "index_button submit", :value => "Find Flights"

@@ -1,0 +1,56 @@
+<%= form_for @order do |f| %>
+  <h3>Passengers</h3>
+  <div class="control-group">
+  <%= render 'form_nested_many' %>
+  </div>
+  </br>
+  <h3>Contact person</h3>
+    <div class="form-horizontal">
+      <div class="control-group">
+        <%= f.label :contact_name, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_field :contact_name, :class => "input-xlarge", :placeholder => "Name"%>
+          <p class="help-block">Required.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :contact_phone, :class => "control-label" %>
+        <div class="controls">
+          <%= f.phone_field :contact_phone, :class => "input-xlarge", :placeholder => "Phone" %>
+          <p class="help-block">Required.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :contact_email, :class => "control-label" %>
+        <div class="controls">
+          <%= f.email_field :contact_email, :class => "input-xlarge", :placeholder => "Email" %>
+          <p class="help-block">Required.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :print_time, :class => "control-label" %>
+        <div class="controls">
+          <select id="order_print_time" name="order[print_time]">
+            <option value="1">Print ticket directly</option>
+            <option value="2">Print ticket later</option>
+          </select>
+          <p class="help-block">Required.</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :remark, :class => "control-label" %>
+        <div class="controls">
+          <%= f.text_area :remark, :class => "input-xlarge", :rows => "5" %>
+          <p class="help-block">Optional.</p>
+        </div>
+      </div>
+      <% if @flight %>
+        <%= f.hidden_field :flight_id, :value => @flight.id %>
+      <% end %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    </div>
+<% end %>
+
+<%= render 'form_nested_replaced'.html_safe %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  cred_type: MyString
+  cred_number: MyString
+  accident_number: 1
+  delay_number: 1
+  order_id: 1
+
+two:
+  name: MyString
+  cred_type: MyString
+  cred_number: MyString
+  accident_number: 1
+  delay_number: 1
+  order_id: 1

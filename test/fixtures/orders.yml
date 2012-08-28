@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  contact_name: 
+  contact_phone: 
+  contact_email: 
+  print_time: 
+  flight_id: 
+  remark: MyText
+
+two:
+  contact_name: 
+  contact_phone: 
+  contact_email: 
+  print_time: 
+  flight_id: 
+  remark: MyText

@@ -1,0 +1,31 @@
+<h1>Listing deliver_pays</h1>
+
+<table>
+  <tr>
+    <th>Pay way</th>
+    <th>Deliver way</th>
+    <th>Order</th>
+    <th>Address</th>
+    <th>Remark</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @deliver_pays.each do |deliver_pay| %>
+  <tr>
+    <td><%= deliver_pay.pay_way %></td>
+    <td><%= deliver_pay.deliver_way %></td>
+    <td><%= deliver_pay.order_id %></td>
+    <td><%= deliver_pay.address_id %></td>
+    <td><%= deliver_pay.remark %></td>
+    <td><%= link_to 'Show', deliver_pay %></td>
+    <td><%= link_to 'Edit', edit_deliver_pay_path(deliver_pay) %></td>
+    <td><%= link_to 'Destroy', deliver_pay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Deliver pay', new_deliver_pay_path %>

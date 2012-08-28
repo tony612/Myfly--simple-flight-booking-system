@@ -1,0 +1,37 @@
+<h1>New order</h1>
+
+<% if @flight %>
+<table class="table">
+  <tr>
+    <th>Airline</th>
+    <th>FlightNo</th>
+    <th>PlaneType</th>
+    <th>LeaveTime</th>
+    <th>LeaveCity</th>
+    <th>ArriveTime</th>
+    <th>ArriveCity</th>
+    <th>Price</th>
+    <th>Class</th>
+    <th>Remark</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><%= @flight.airline %></td>
+    <td><%= @flight.flight_no %></td>
+    <td><%= @flight.plane_type %></td>
+    <td><%= @flight.leave_time %></td>
+    <td><%= @flight.leave_city %></td>
+    <td><%= @flight.arrive_time %></td>
+    <td><%= @flight.arrive_city %></td>
+    <td><%= @flight.price %></td> 
+    <td><%= @flight.cabin_class %></td> 
+    <td><%= @flight.remark %></td>
+  </tr>
+</table>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to 'Back', orders_path %>

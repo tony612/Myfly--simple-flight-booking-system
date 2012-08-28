@@ -1,0 +1,54 @@
+%h3 Flight info and passengers
+%table.table.table-hover
+  %tbody
+    %tr.error
+      %td= [@flight.airline, @flight.flight_no].join(" ")
+      %td= @flight.plane_type
+      %td= [@flight.leave_time.to_s(:db), "Leave", @flight.leave_city].join(" ")
+      %td= ["￥", @flight.price].join("")
+    -@order.passengers.each do |p|
+      %tr.info
+        %td= p.name
+        %td= p.cred_type
+        %td= p.cred_number
+        %td
+
+%h3 Booking Items
+.booking_items
+  %p 
+    网上数据更新有一定延时，您所选定的航班、舱位和价格以操作人员回复为准。我们会根据民航订座系统实时信息与您确认。
+  %h5= [@flight.flight_no, '(' + @flight.leave_city, '-', @flight.arrive_city + ')'].join(" ")
+  %p
+    航空公司将在航班起飞前45分钟截止办理值机手续。
+
+.deliver_info
+  %h3 Deliver information
+  %table.table
+    %thead
+      %tr.error
+        %th Deliver way
+        %th Pay way
+    %tbody
+      %tr
+        - if @deliver_pay.deliver_way == 'GIA'
+          %td 机场自取
+        - elsif @deliver_pay.deliver_way == 'SBP'
+          %td 邮寄行程单
+        - elsif @deliver_pay.deliver_way == 'SWC'
+          %td 市内配送
+        - elsif @deliver_pay.deliver_way == 'GWC'
+          %td 市内自取
+        %td= @deliver_pay.pay_way
+  %p
+    %b Contact name: 
+    = @order.contact_name
+    %br
+    %b Phone:
+    = @order.contact_phone
+    %br
+    %b E-mail:
+    = @order.contact_email
+%br
+%button.btn.btn-primary Pay
+
+

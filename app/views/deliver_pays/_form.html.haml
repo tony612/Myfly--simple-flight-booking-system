@@ -1,0 +1,123 @@
+= form_for @deliver_pay do |f|
+  #deliver_way.accordion
+    %h3 Deliver way
+    %input#inputWay{:type => "hidden", :name => "deliver_pay[deliver_way]", :value => "SBP"}
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{:'data-toggle' => "collapse", :'data-parent' => "#deliver_way", :href => "#collapseOne"} It can be sent to you by post
+      .accordion-body.collapse.in#collapseOne{:'data-deliver' => "SBP"}
+        .accordion-inner
+          .form-horizontal
+            .control-group
+              %label.control-label{:for => "inputName"} Name
+              .controls
+                %input#inputName{:type => "text", :placeholder => "Name", :name => "address[SBP][name]"}
+            .control-group
+              %label.control-label{:for => "inputProvince"} Address
+              .controls
+                %input#inputProvince{:type => "text", :placeholder => "Province", :name => "address[SBP][province]"}
+                %span.help-inline Province
+                %input#inputCity{:type => "text", :placeholder => "City", :name => "address[SBP][city]"}
+                %span.help-inline City
+                %input#inputArea{:type => "text", :placeholder => "Area", :name => "address[SBP][area]"}
+                %span.help-inline Area&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                %input#inputStreet{:type => "text", :placeholder => "Street", :name => "address[SBP][street]"}
+                %span.help-inline Street
+            .control-group
+              %label.control-label{:for => "inputPost"} Postcode
+              .controls
+                %input#inputPost{:type => "text", :placeholder => "Postcode", :name => "address[SBP][postcode]"}
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{:'data-toggle' => "collapse", :'data-parent' => "#deliver_way", :href => "#collapseTwo"} You can get it in the air port
+      .accordion-body.collapse#collapseTwo{:'data-deliver' => "GIA"}
+        .accordion-inner
+          .form-horizontal
+            .control-group
+              %label.control-label Choose address
+              .controls
+                - @order.flight.addresses.where("delivery_way = ?", "GIA").each do |ad|
+                  %input#addressGIA{:type => "radio", :value => "#{ad.info}", :checked => true, :name => "address[GIA][info]"}
+                  = ad.info
+            %label.control-label{:for => "timeGIA"} Time to get
+            .controls
+              %input#timeGIA.auto-kal{:type => "text", :placeholder => "time", :name => "address[GIA][day]"}
+              %select.span2{:name => "address[GIA][hour]"}
+                - (8..20).each do |i|
+                  %option= "#{i}:00"
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{:'data-toggle' => "collapse", :'data-parent' => "#deliver_way", :href => "#collapseThree"}  Be sent to you within the city
+      .accordion-body.collapse#collapseThree{:'data-deliver' => "SWC"}
+        .accordion-inner
+          .form-horizontal
+            .control-group
+              %label.control-label City
+              .controls
+                %input{:type => "text", :disabled => "disables", :name => "deliver_pay[address_attributes][SWC][city]", :value => "#{@order.flight.leave_city}"}
+            .control-group
+              %label.control-label{:for => "addressSWC"} Your address
+              .controls
+                %input#addressSWC{:type => "text", :placeholder => "Address", :name => "address[SWC][info]"}
+            .control-group
+              %label.control-label{:for => "timeSWC"} Time to send
+              .controls
+                %input#timeSWC.auto-kal.span2{:type => "text", :placeholder => "Time", :name => "address[SWC][day]"}
+                %select.span2{:name => "address[SWC][hour]"}
+                  - (8..18).each do |i|
+                    %option= "#{i}:00"
+
+    .accordion-group
+      .accordion-heading
+        %a.accordion-toggle{:'data-toggle' => "collapse", :'data-parent' => "#deliver_way", :href => "#collapseFour"}  Get it yourself within the city
+      .accordion-body.collapse#collapseFour{:'data-deliver' => "GWC"}
+        .accordion-inner
+          .form-horizontal
+            .control-group
+              %label.control-label City
+              .controls
+                %input{:type => "text", :disabled => "disables", :name => "deliver_pay[address_attributes][GWC][city]", :value => "#{@order.flight.leave_city}"}
+            .control-group
+              %label.control-label Address
+              .controls
+                - @order.flight.addresses.where("delivery_way = ?", "GWC").each do |ad|
+                  %input{:type => "radio", :value => "#{ad.info}", :checked => true, :name => "address[GWC][info]"}
+                  = ad.info
+                  %br
+                  %br
+            .control-group
+              %label.control-label{:for => "timeGWC"} Time to get
+              .controls
+                %input#timeGWC.auto-kal.span2{:type => "text", :placeholder => "Time", :name => "address[GWC][day]"}
+                %select.span2{:name => "address[GWC][hour]"}
+                  - (8..18).each do |i|
+                    %option= "#{i}:00"
+
+  #pay_way
+    %h3 Pay way
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "alipay", :checked => true}
+      Alipay
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "ICBC"}
+      ICBC
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "ABC"}
+      ABC
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "CCB"}
+      CCB
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "BOC"}
+      BOC
+    %label.radio
+      %input{:type => "radio", :name => "deliver_pay[pay_way]", :value => "CEB"}
+      CEB
+
+  .remark
+    %label.control-label{:for => "remark"} Remark
+    .controls
+      %textarea#remark{:name => "deliver_pay[remark]"}
+  %input{:type => "hidden", :name => "order_id", :value => @order.id}
+  .actions
+    = f.submit

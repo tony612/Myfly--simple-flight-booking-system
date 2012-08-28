@@ -1,0 +1,39 @@
+#passengers_fields.fields{:style => "display:none"}
+  .fields#new_passengers
+    %input#new_passengers_destroy{:name => "order[passengers_attributes][new_passengers][name]", :type => "hidden", :value => false}
+    %a.remove_passengers_fields{:href => "javascript:void(0)"}
+      %span.btn.btn-danger
+        %i.icon-trash.icon-white.icon-large 
+    %fieldset.form-horizontal
+      .control-group#new_passengers_name_field
+        %label.control-label{:for => 'new_passengers_name'} Name
+        .controls
+          %input#new_passengers_name.input-xlarge{:name => "order[passengers_attributes][new_passengers][name]", :type => "text", :placeholder => "Name"}
+          %p.help-block Required.
+      .control-group#new_passengers_cred_type_field
+        %label.control-label{:for => 'new_passengers_cred_type'} Cred Type
+        .controls
+          %select#new_passengers_cred_field{:name => "order[passengers_attributes][new_passengers][cred_type]"}
+            %option{:value => "ID card"} ID card
+            %option{:value => "Passport"} Passport
+            %option{:value => "Others"} Others
+          %p.help-block Required.
+      .control-group#new_passengers_cred_number_field
+        %label.control-label{:for => 'new_passengers_cred_number'} Cred Number
+        .controls
+          %input#new_passengers_cred_number.input-xlarge{:name => "order[passengers_attributes][new_passengers][cred_number]", :type => "text", :placeholder => "Cred Number"}
+          %p.help-block Required.
+      .control-group#new_passengers_accident_number_field
+        %label.control-label{:for => 'new_passengers_accident_number'} Number of accident insurance
+        .controls
+          %select#new_passengers_accident_number{:name => "order[passengers_attributes][new_passengers][accident_number]"}
+            - (0..5).each do |i|
+              %option{:value => "#{i}"} #{i}
+          %p.help-block Optional.
+      .control-group#new_passengers_delay_number_field
+        %label.control-label{:for => 'new_passengers_delay_number'} Name of delay insurance
+        .controls
+          %select#new_passengers_delay_number{:name => "order[passengers_attributes][new_passengers][delay_number]"}
+            - (0..5).each do |i|
+              %option{:value => "#{i}"} #{i}
+          %p.help-block Optional.

@@ -1,0 +1,46 @@
+.controls
+  .btn-group#passenger_control
+    %a.btn.btn-info.add_passengers_fields{:'data-association' => "passengers", :'data-name' => "passengers_fields", :href => "javascript:void(0)"}
+      %i.icon-white.icon-plus 
+      Add a new passenger
+  %br
+  %ul.nav.nav-tabs#passenger_nav
+    %li.active
+      %a{:'data-toggle' => "tab", :href => "#new_1", :'data-passno' => "new_1"} Passenger 1
+.tab-content
+  .tab-pane.fields.active#new_1
+    %input#new_1_destroy{:name => "order[passengers_attributes][new_1][name]", :type => "hidden", :value => false}
+    %fieldset.form-horizontal
+      .control-group#new_1_name_field
+        %label.control-label{:for => 'new_1_name'} Name
+        .controls
+          %input#new_1_name.input-xlarge{:name => "order[passengers_attributes][new_1][name]", :type => "text", :placeholder => "Name"}
+          %p.help-block Required.
+      .control-group#new_1_cred_field
+        %label.control-label Cred type
+        .controls
+          %select#new_1_cred_field{:name => "order[passengers_attributes][new_1][cred_type]"}
+            %option{:value => "ID card"} ID card
+            %option{:value => "Passport"} Passport
+            %option{:value => "Others"} Others
+          %p.help-block Required.
+      .control-group#new_1_cred_number_field
+        %label.control-label Cred number
+        .controls
+          %input#new_1_cred_number.input-xlarge{:name => "order[passengers_attributes][new_1][cred_number]", :type => "text", :placeholder => "Cred Numbar"}
+          %p.help-block Required.
+      .control-group#new_1_accident_number_field
+        %label.control-label Accident number
+        .controls
+          %select#new_1_accident_number{:name => "order[passengers_attributes][new_1][accident_number]"}
+            - (0..5).each do |i|
+              %option{:value => "#{i}"} #{i}
+          %p.help-block Optional.
+      .control-group#new_1_delay_number_field
+        %label.control-label Delay number
+        .controls
+          %select#new_1_delay_number{:name => "order[passengers_attributes][new_1][delay_number]"}
+            - (0..5).each do |i|
+              %option{:value => "#{i}"} #{i}
+          %p.help-block Optional.
+

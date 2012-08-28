@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  airline: MyString
+  flightno: MyString
+  planetype: MyString
+  leavetime: 2012-08-18 14:08:00
+  leavecity: MyString
+  arrivetime: 2012-08-18 14:08:00
+  arrivecity: MyString
+  remark: MyText
+
+two:
+  airline: MyString
+  flightno: MyString
+  planetype: MyString
+  leavetime: 2012-08-18 14:08:00
+  leavecity: MyString
+  arrivetime: 2012-08-18 14:08:00
+  arrivecity: MyString
+  remark: MyText

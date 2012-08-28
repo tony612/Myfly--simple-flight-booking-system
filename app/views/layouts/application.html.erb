@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title %> | Mrfly</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="container">
+    <%= link_to root_path do%>
+      <img id="logo" src="/assets/logo.jpg">
+    <% end %>
+  <div class="navbar navbar-static" id="navbar">
+    <div class="navbar-inner">
+      <a class="brand">Mrfly</a>
+      <ul class="nav">
+        <li class="active"><a href="<%= root_path %>">Home</a></li>
+        
+      </ul>
+      <ul class="nav pull-right">
+        <% if user_signed_in? %>
+          <li><%= link_to "Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign up", new_user_registration_path %></li>
+          <li><%= link_to "Login", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="navbarContent">
+    <%= yield %>
+  </div>
+</div>
+<%= debug(params) %>
+
+</body>
+</html>

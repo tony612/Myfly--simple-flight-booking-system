@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  pay_way: MyString
+  deliver_way: MyString
+  order_id: 1
+  address_id: 1
+  remark: MyText
+
+two:
+  pay_way: MyString
+  deliver_way: MyString
+  order_id: 1
+  address_id: 1
+  remark: MyText
