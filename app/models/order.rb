@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  attr_accessible :contact_email, :contact_name, :contact_phone, :flight_id, :print_time, :remark, :passengers_attributes
+  attr_accessible :contact_email, :contact_name, :contact_phone, :flight_id, :print_time, :remark, :passengers_attributes, :user_id
   validates :contact_email, :contact_name, :contact_phone, :flight_id, :print_time, presence: true
   
   belongs_to :flight
@@ -11,4 +11,6 @@ class Order < ActiveRecord::Base
   has_one :deliver_pay, :dependent => :destroy, :inverse_of => :order
   attr_accessible :deliver_pay_attributes
   accepts_nested_attributes_for :deliver_pay, :allow_destroy => true
+
+  belongs_to :user, :inverse_of => :orders
 end

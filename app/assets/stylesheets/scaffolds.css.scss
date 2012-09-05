@@ -1,9 +1,13 @@
 body {
-  background-color: #fff;
+  background: url("/assets/whitediamond.png");
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+}
+
+.container {
+  background: url("/assets/grey.png");
 }
 
 p, ol, ul, td {
@@ -84,3 +88,19 @@ div {
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   }
 }
+
+p.error {
+  color: #ff0000;
+}
+
+.purr {
+  position: fixed;
+  top: 30px;
+  right: 100px;
+  width: 250px;
+  padding: 20px;
+  background-color: #FCC;
+  border: solid 2px #666;
+  &:first-letter { text-transform: uppercase };
+}
+

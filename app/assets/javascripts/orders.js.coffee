@@ -1,5 +1,8 @@
-$ = jQuery
+
+$('.best_in_place').best_in_place()
+
 $(document).ready(->
+
   return window.nestedEvents.insertFields =(content, assoc, link)->
     tab_content = $(link).closest(".controls").siblings ".tab-content"
     tab_content.append content

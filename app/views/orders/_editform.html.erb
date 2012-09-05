@@ -1,0 +1,11 @@
+<%= form_for(@order) do |f| %>
+  <%= f.label :contact_name %>
+  <%= f.text_field :contact_name %>
+  <%= f.label :contact_phone %>
+  <%= f.text_field :contact_phone %>
+  <%= f.label :contact_email %>
+  <%= f.text_field :contact_email %>
+  <br/>
+  <%= f.submit %>
+<% end %>
+

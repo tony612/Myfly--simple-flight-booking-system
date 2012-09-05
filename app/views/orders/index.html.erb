@@ -1,25 +1,32 @@
-<h1>Listing orders</h1>
+<h1>Your orders</h1>
 
 <table class="table">
   <tr>
-    <th>Contact name</th>
-    <th>Contact phone</th>
-    <th>Contact email</th>
-    <th>Print time</th>
-    <th>Flight</th>
+    <th>Airline</th>
+    <th>FlightNo</th>
+    <th>PlaneType</th>
+    <th>LeaveTime</th>
+    <th>LeaveCity</th>
+    <th>ArriveTime</th>
+    <th>ArriveCity</th>
+    <th>Price</th>
+    <th>Class</th>
     <th>Remark</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="2">Handle</th>
   </tr>
 
-<% @orders.each do |order| %>
+  <% @orders.each do |order| %>
+    <% flight = order.flight %>
   <tr>
-    <td><%= order.contact_name %></td>
-    <td><%= order.contact_phone %></td>
-    <td><%= order.contact_email %></td>
-    <td><%= order.print_time %></td>
-    <td><%= order.flight_id %></td>
+    <td><%= flight.airline %></td>
+    <td><%= flight.flight_no %></td>
+    <td><%= flight.plane_type %></td>
+    <td><%= flight.leave_time.to_formatted_s(:short) %></td>
+    <td><%= flight.leave_city %></td>
+    <td><%= flight.arrive_time.to_formatted_s(:short) %></td>
+    <td><%= flight.arrive_city %></td>
+    <td><%= flight.price %></td> 
+    <td><%= flight.cabin_class %></td> 
     <td><%= order.remark %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
@@ -28,6 +35,10 @@
 <% end %>
 </table>
 
-<br />
 
-<%= link_to 'New Order', new_order_path %>
+
+</br>
+</br>
+</br>
+</br>
+</br>

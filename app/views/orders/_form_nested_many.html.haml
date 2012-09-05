@@ -9,7 +9,7 @@
       %a{:'data-toggle' => "tab", :href => "#new_1", :'data-passno' => "new_1"} Passenger 1
 .tab-content
   .tab-pane.fields.active#new_1
-    %input#new_1_destroy{:name => "order[passengers_attributes][new_1][name]", :type => "hidden", :value => false}
+    =#%input#new_1_destroy{:name => "order[passengers_attributes][new_1][name]", :type => "hidden", :value => false}
     %fieldset.form-horizontal
       .control-group#new_1_name_field
         %label.control-label{:for => 'new_1_name'} Name

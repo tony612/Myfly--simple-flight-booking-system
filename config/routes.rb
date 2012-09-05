@@ -1,11 +1,14 @@
 Mrfly::Application.routes.draw do
-  resources :deliver_pays
 
   resources :orders
 
-  get "flights/search"
-  resources :flights
+  resources :deliver_pays, :only => [:show, :new, :create]
 
+  resources :flights, :only => [:search, :index] do
+    get 'search', :on => :collection
+    post 'index', :on => :collection
+  end
+  
   mount RailsAdmin::Engine => '/mradmin', :as => 'rails_admin'
 
   devise_for :users

@@ -1,29 +1,16 @@
 class OrdersController < ApplicationController
-  # GET /orders
-  # GET /orders.json
-  def index
-    @orders = Order.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
-    end
-  end
-
-  # GET /orders/1
-  # GET /orders/1.json
+  before_filter :authenticate_user!
+  
   def show
+    @title = "Order"
     @order = Order.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @order }
-    end
+    @flight = Flight.find(@order.flight_id)
   end
 
   # GET /orders/new
   # GET /orders/new.json
   def new
+    @title = "New Order"
     @order = Order.new
     @flight = Flight.find(params[:flight_id])
     respond_to do |format|
@@ -35,12 +22,28 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+    @title = "Edit order"
+  end
+  
+  def update
+    @order = Order.find(params[:id])
+    respond_to do |format|
+       if @order.update_attributes(params[:order])
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.json { respond_with_bip(@order) }
+      else
+        format.html { render action: "edit" }
+        format.json { respond_with_bip(@order) }
+      end
+    end
   end
 
   # POST /orders
   # POST /orders.json
   def create
     @order = Order.new(params[:order])
+    user = current_user
+    user.orders << @order
     respond_to do |format|
       if @order.save
         format.html { redirect_to new_deliver_pay_path(:order_id => @order.id), notice: 'Order was successfully created.' }
@@ -51,32 +54,9 @@ class OrdersController < ApplicationController
       end
     end
   end
-
-  # PUT /orders/1
-  # PUT /orders/1.json
-  def update
-    @order = Order.find(params[:id])
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /orders/1
-  # DELETE /orders/1.json
-  def destroy
-    @order = Order.find(params[:id])
-    @order.destroy
-
-    respond_to do |format|
-      format.html { redirect_to orders_url }
-      format.json { head :no_content }
-    end
+  
+  def index
+    @user = current_user
+    @orders = current_user.orders
   end
 end

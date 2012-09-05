@@ -1,4 +1,4 @@
-= form_for @flight, :method => :get, :url => flights_path do |f|
+= form_for @flight, :method => :post, :url => flights_path do |f|
   .triptype
     %input.index_select#tripTypeOne{:type => "radio", :name => "tripType", :value=> "O", :checked => "checked"}
     %label.indextext_select{:for => "tripTypeOne"} One-Way

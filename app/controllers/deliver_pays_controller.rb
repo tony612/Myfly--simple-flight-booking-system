@@ -1,18 +1,11 @@
 class DeliverPaysController < ApplicationController
-  # GET /deliver_pays
-  # GET /deliver_pays.json
-  def index
-    @deliver_pays = DeliverPay.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @deliver_pays }
-    end
-  end
+  
+  before_filter :authenticate_user!
 
   # GET /deliver_pays/1
   # GET /deliver_pays/1.json
   def show
+    @title = "Deliver and Pay"
     @deliver_pay = DeliverPay.find(params[:id])
     @order = @deliver_pay.order
     @flight = @order.flight
@@ -25,6 +18,7 @@ class DeliverPaysController < ApplicationController
   # GET /deliver_pays/new
   # GET /deliver_pays/new.json
   def new
+    @title = "New way"
     @deliver_pay = DeliverPay.new
     @order = Order.find(params[:order_id])
     @flight = Flight.find(@order.flight_id)
@@ -32,11 +26,6 @@ class DeliverPaysController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @deliver_pay }
     end
-  end
-
-  # GET /deliver_pays/1/edit
-  def edit
-    @deliver_pay = DeliverPay.find(params[:id])
   end
 
   # POST /deliver_pays
@@ -67,31 +56,4 @@ class DeliverPaysController < ApplicationController
     end
   end
 
-  # PUT /deliver_pays/1
-  # PUT /deliver_pays/1.json
-  def update
-    @deliver_pay = DeliverPay.find(params[:id])
-
-    respond_to do |format|
-      if @deliver_pay.update_attributes(params[:deliver_pay])
-        format.html { redirect_to @deliver_pay, notice: 'Deliver pay was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @deliver_pay.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /deliver_pays/1
-  # DELETE /deliver_pays/1.json
-  def destroy
-    @deliver_pay = DeliverPay.find(params[:id])
-    @deliver_pay.destroy
-
-    respond_to do |format|
-      format.html { redirect_to deliver_pays_url }
-      format.json { head :no_content }
-    end
-  end
 end

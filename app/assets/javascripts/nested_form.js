@@ -1,4 +1,4 @@
-jQuery(function($) {
+$(function($) {
 
   window.NestedEvents = function() {
     this.addFields = $.proxy(this.addFields, this);
@@ -52,7 +52,7 @@ jQuery(function($) {
 
   window.nestedEvents = new NestedEvents();
 
-  $('#passenger_control a').live('click', nestedEvents.addFields);
+  //$('#passenger_control a').live('click', nestedEvents.addFields);
   console.log($('#passenger_control a').attr('data-association'))
   $('.tab-content a.remove_passengers_fields').live('click', nestedEvents.removeFields);
 

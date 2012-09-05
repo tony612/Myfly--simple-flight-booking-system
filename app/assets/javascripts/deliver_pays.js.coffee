@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 change_deliver = (e)->
-  e.preventDefault()
+  #e.preventDefault()
   accordion = e.currentTarget
   acc_body = $(accordion).next()
   if acc_body and $.inArray("in", acc_body.attr("class"))

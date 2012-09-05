@@ -13,5 +13,5 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 4
   validates_confirmation_of :password
 
-  # attr_accessible :title, :body
+  has_many :orders, :inverse_of => :user
 end
